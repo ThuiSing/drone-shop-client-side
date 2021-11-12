@@ -1,12 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import Rating from "react-rating";
-import StarRatings from "react-star-ratings";
 import dummyImg from "../../../Images/icons/user.png";
 
 const UserReviewCarousel = ({ review }) => {
   const { textarea, userImg, name, companyName, rating } = review;
-  const { useRating, setUserRating } = useState(rating);
-  console.log(useRating);
   console.log(rating);
   return (
     <div className="text-center ">

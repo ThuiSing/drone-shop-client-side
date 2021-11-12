@@ -3,9 +3,7 @@ import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { useEffect } from "react";
 import axios from "axios";
-import userImg from "../../Images/icons/user.png";
 import "./userReview.css";
-import StarRatings from "react-star-ratings";
 import UserReviewCarousel from "./UserReviewCarousel/UserReviewCarousel";
 
 const responsive = {
