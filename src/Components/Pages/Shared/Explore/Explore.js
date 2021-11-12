@@ -21,7 +21,11 @@ const Explore = ({ showAll }) => {
   return (
     <div className="mt-16">
       {showAll && <Navbar />}
-      <div className={`container mx-auto ${showAll ? "py-4" : "py-12"}`}>
+      <div
+        className={`container mx-auto px-3 md:px-0 ${
+          showAll ? "py-4" : "py-12"
+        }`}
+      >
         <div className="text-center my-6">
           <h1 className="text-4xl font-semibold">Our Drones</h1>
         </div>

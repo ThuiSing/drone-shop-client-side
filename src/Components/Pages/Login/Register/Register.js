@@ -3,9 +3,11 @@ import { useForm } from "react-hook-form";
 import { Link, useHistory } from "react-router-dom";
 import useAuth from "../../../Hooks/useAuth";
 import googleIcons from "../../../Images/icons/google.png";
+import logo from "../../../Images/logo.png";
 
 const Register = () => {
-  const { RegisterUsingEmail, LogInUsingGoogle, error, setError } = useAuth();
+  const { RegisterUsingEmail, LogInUsingGoogle, error, setError, isLoading } =
+    useAuth();
   const history = useHistory();
   const {
     register,
@@ -21,11 +23,11 @@ const Register = () => {
     }
   };
   return (
-    <div className="min-h-screen flex justify-center items-center px-4 md:px-0">
+    <div className="min-h-screen flex justify-center items-center px-4 md:px-0 relative">
       <div className=" w-full md:w-2/5 lg:w-2/6 bg-gray-200 text-center px-5 py-7 rounded shadow-md">
         <div>
           <Link to="/">
-            <h1 className="text-4xl font-bold">Name</h1>
+            <img className="mx-auto" width="300" src={logo} alt="logo" />
           </Link>
         </div>
         <div className="mt-6">
@@ -112,6 +114,17 @@ const Register = () => {
           </div>
         </div>
       </div>
+      {isLoading && (
+        <div className="absolute flex justify-center items-center w-full h-full">
+          <div>
+            <img
+              width="150"
+              src="https://c.tenor.com/I6kN-6X7nhAAAAAj/loading-buffering.gif"
+              alt=""
+            />
+          </div>
+        </div>
+      )}
     </div>
   );
 };

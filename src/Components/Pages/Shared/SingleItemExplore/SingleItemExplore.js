@@ -10,7 +10,7 @@ const SingleItemExplore = ({ drone }) => {
       </div>
       <div className="space-y-2">
         <h3 className="text-3xl font-medium">{name}</h3>
-        <p className="text-gray-600">{description}</p>
+        <p className="text-gray-600">{description.slice(0, 200)}...</p>
         <h4 className="text-xl font-bold">Price : ${price}</h4>
         <div>
           <Link to={`/purchase/${_id}`}>

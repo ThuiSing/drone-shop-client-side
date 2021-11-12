@@ -1,16 +1,17 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import logo from "../../../Images/logo.png";
 
 const Footer = () => {
   const Year = new Date().getFullYear();
   return (
-    <footer className="bg-gray-800 text-white py-8">
+    <footer className="bg-gray-800 text-white py-8 px-3 md:px-0">
       <div className="container mx-auto md:grid grid-cols-4 gap-8 pt-16">
         <div>
           <Link to="/">
-            <h3 className="text-5xl font-semibold">Name</h3>
+            <img width="250" src={logo} alt="logo" />
           </Link>
-          <h4 className="my-4 text-md text-yellow-300 font-medium">
+          <h4 className="my-4 text-md text-yellow-300 font-medium mt-8">
             Call Us :
             <a className="text-white ml-2" href="tel:017-8882-1777">
               017 8882 11777
@@ -69,9 +70,9 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      <div className="mt-6 border-t-2 text-center">
-        <div className=" pt-8">
-          <span className="border-r pr-6 text-xl">FAQ</span>
+      <div className="mt-6 border-t-2 text-center ">
+        <div className="flex flex-col md:block  pt-8">
+          <span className="border-r pr-6  text-xl">FAQ</span>
           <span className="mx-4 border-r pr-6 text-xl">Orders & Return</span>
           <span className="border-r pr-6 text-xl">Shipping & Policy</span>
           <span className="mx-4 border-r pr-6 text-xl">Contact US</span>

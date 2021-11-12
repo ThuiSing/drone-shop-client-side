@@ -3,9 +3,10 @@ import { useForm } from "react-hook-form";
 import { Link, useHistory, useLocation } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
 import googleIcons from "../../Images/icons/google.png";
+import logo from "../../Images/logo.png";
 
 const Login = () => {
-  const { LogInUsingGoogle, logInUsingEmail, error } = useAuth();
+  const { LogInUsingGoogle, logInUsingEmail, error, isLoading } = useAuth();
   const history = useHistory();
   const location = useLocation();
   const destination = location.state?.from || "/";
@@ -19,11 +20,11 @@ const Login = () => {
     logInUsingEmail(data.email, data.password, history, destination);
   };
   return (
-    <div className="min-h-screen flex justify-center items-center px-4 md:px-0">
+    <div className="min-h-screen flex justify-center items-center px-4 md:px-0 relative">
       <div className="w-full md:w-2/5 lg:w-2/6 bg-gray-200 text-center px-5 py-7 rounded shadow-md">
         <div>
           <Link to="/">
-            <h1 className="text-4xl font-bold">Name</h1>
+            <img className="mx-auto" width="300" src={logo} alt="logo" />
           </Link>
         </div>
         <div className="mt-6">
@@ -84,6 +85,17 @@ const Login = () => {
           </div>
         </div>
       </div>
+      {isLoading && (
+        <div className="absolute flex justify-center items-center w-full h-full">
+          <div>
+            <img
+              width="150"
+              src="https://c.tenor.com/I6kN-6X7nhAAAAAj/loading-buffering.gif"
+              alt=""
+            />
+          </div>
+        </div>
+      )}
     </div>
   );
 };

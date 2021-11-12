@@ -17,7 +17,8 @@ const UserReview = () => {
     data.userImg = user.photoURL
       ? user.photoURL
       : "https://cdn-icons-png.flaticon.com/512/64/64572.png";
-    if (data.rating >= 5 || data.rating <= 0) {
+
+    if (data.rating <= 0 || data.rating >= 5) {
       setErr("Rating value must be less than 5 or greater than 1");
     } else {
       setErr("");

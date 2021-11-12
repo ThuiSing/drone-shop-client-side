@@ -4,6 +4,7 @@ import { useParams, useHistory } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import useAuth from "../../Hooks/useAuth";
 import Navbar from "../Shared/Navbar/Navbar";
+import Footer from "../Shared/Footer/Footer";
 
 const Purchase = () => {
   const { user } = useAuth();
@@ -46,8 +47,8 @@ const Purchase = () => {
   return (
     <>
       <Navbar />
-      <div className="container mx-auto py-10  mt-16">
-        <div className="grid grid-cols-2 gap-x-10">
+      <div className="container mx-auto py-10 px-3 md:px-0 mt-16">
+        <div className="grid md:grid-cols-2 gap-x-10">
           <div>
             <div>
               <img src={drone.img} alt={drone.name} />
@@ -62,7 +63,7 @@ const Purchase = () => {
               </h2>
             </div>
           </div>
-          <div>
+          <div className="mt-8 md:mt-0">
             <h3 className="text-3xl font-medium mb-8">
               Fill up your Information :
             </h3>
@@ -142,6 +143,7 @@ const Purchase = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 };

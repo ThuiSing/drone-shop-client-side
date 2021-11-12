@@ -13,6 +13,7 @@ import MakeAdmin from "./MakeAdmin/MakeAdmin";
 import ManageAllOrders from "./ManageAllOrders/ManageAllOrders";
 import ManageProducts from "./ManageProducts/ManageProducts";
 import UpdateProduct from "./ManageProducts/UpdateProduct/UpdateProduct";
+import logo from "../../Images/logo.png";
 
 const AdminDashboard = () => {
   const { logOutUser } = useAuth();
@@ -43,7 +44,7 @@ const AdminDashboard = () => {
         </svg>
       </div>
       <div
-        className={`fixed top-0 w-1/2 h-screen bg-gray-800 text-white shadow-md  p-2 ${
+        className={`fixed top-0 w-1/2 h-screen bg-gray-800 text-white shadow-md md:hidden  p-2 ${
           showNav ? "block" : "hidden"
         }`}
       >
@@ -66,7 +67,7 @@ const AdminDashboard = () => {
         </div>
         <div className="p-5 mt-5">
           <Link to="/">
-            <h2 className="text-4xl tex font-semibold uppercase">Name</h2>
+            <img width="200" src={logo} alt="logo" />
           </Link>
         </div>
         <div className="flex flex-col justify-between h-5/6 ">
@@ -114,10 +115,10 @@ const AdminDashboard = () => {
       <div className=" fixed -inset-1 bg-gray-800 text-white w-64 hidden md:block">
         <div className="p-5 mt-5">
           <Link to="/">
-            <h2 className="text-4xl tex font-semibold uppercase">Name</h2>
+            <img width="200" src={logo} alt="logo" />
           </Link>
         </div>
-        <div className="flex flex-col justify-between h-5/6 ">
+        <div className="flex flex-col space-y-16">
           <div className="flex flex-col mt-8">
             <NavLink
               exact

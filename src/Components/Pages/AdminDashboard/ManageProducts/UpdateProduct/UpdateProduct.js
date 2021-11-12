@@ -49,8 +49,8 @@ const UpdateProduct = () => {
         <div className="w-1/2">
           <img src={product.img} alt={product.name} />
           <div className="mt-4">
-            <h4 className="text-2xl font-medium">{product.name}</h4>
-            <h4>Price : ${product.price}</h4>
+            <h4 className="text-3xl font-medium">{product.name}</h4>
+            <h4 className="font-medium my-2">Price : ${product.price}</h4>
             <h4>{product.description}</h4>
           </div>
         </div>

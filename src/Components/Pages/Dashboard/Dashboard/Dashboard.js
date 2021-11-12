@@ -11,6 +11,7 @@ import useAuth from "../../../Hooks/useAuth";
 import PrivateRoute from "../../PrivateRoute/PrivateRoute";
 import UserOrders from "../UserOrders/UserOrders";
 import UserReview from "../UserReview/UserReview";
+import logo from "../../../Images/logo.png";
 
 const Dashboard = () => {
   const { logOutUser } = useAuth();
@@ -41,7 +42,7 @@ const Dashboard = () => {
         </svg>
       </div>
       <div
-        className={`fixed top-0 w-1/2 h-full bg-gray-100 shadow-md  p-2 ${
+        className={`fixed top-0 w-2/3 sm:w-1/2 h-full bg-gray-100 shadow-md md:hidden  p-2 ${
           showNav ? "block" : "hidden"
         }`}
       >
@@ -64,7 +65,7 @@ const Dashboard = () => {
         </div>
         <div className="my-7">
           <Link to="/">
-            <h2 className="text-3xl font-bold uppercase">Name</h2>
+            <img width="200" src={logo} alt="logo" />
           </Link>
         </div>
         <div>
@@ -107,7 +108,7 @@ const Dashboard = () => {
       <div className="fixed bg-white w-64 hidden top-0 h-screen border-r-2 md:block ">
         <div className="px-4 pt-6">
           <Link to="/">
-            <h2 className="text-3xl font-bold uppercase">Name</h2>
+            <img width="250" src={logo} alt="logo" />
           </Link>
         </div>
         <div className="flex flex-col justify-between h-5/6 ">

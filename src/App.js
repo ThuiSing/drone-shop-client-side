@@ -1,6 +1,7 @@
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import "./App.css";
 import AuthProvider from "./Components/Context/AuthProvider";
+import AboutUs from "./Components/Pages/AboutUs/AboutUs";
 import AdminDashboard from "./Components/Pages/AdminDashboard/AdminDashboard";
 import AdminRoute from "./Components/Pages/AdminRoute/AdminRoute";
 import Dashboard from "./Components/Pages/Dashboard/Dashboard/Dashboard";
@@ -29,6 +30,9 @@ function App() {
             </Route>
             <Route path="/register">
               <Register />
+            </Route>
+            <Route path="/about-us">
+              <AboutUs />
             </Route>
             <PrivateRoute path="/dashboard">
               <Dashboard />

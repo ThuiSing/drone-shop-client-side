@@ -8,7 +8,7 @@ const ContactUs = () => {
     reset("");
   };
   return (
-    <div className="container mx-auto py-12">
+    <div className="container mx-auto py-12 px-3 md:px-0">
       <div className="text-center">
         <h2 className="text-4xl font-medium">Have Some Any Question ?</h2>
         <h4 className="text-xl font-medium mt-3 mb-8 text-yellow-500">
@@ -24,7 +24,7 @@ const ContactUs = () => {
             placeholder="Enter your name"
           />
           <input
-            className="w-full p-3 border border-gray-300 my-4 rounded focus:border-gray-800 outline-none"
+            className="w-full p-3 border border-gray-300 my-5 rounded focus:border-gray-800 outline-none"
             {...register("email")}
             placeholder="Enter your email"
           />
@@ -35,7 +35,7 @@ const ContactUs = () => {
           />
           <textarea
             rows="10"
-            className="w-full p-3 border border-gray-300 my-4 rounded focus:border-gray-800 outline-none"
+            className="w-full p-3 border border-gray-300 my-5 rounded focus:border-gray-800 outline-none"
             {...register("textarea")}
             placeholder="message....."
           />

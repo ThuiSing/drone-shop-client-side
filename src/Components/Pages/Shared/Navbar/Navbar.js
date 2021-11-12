@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import useAuth from "../../../Hooks/useAuth";
 import userIcon from "../../../Images/icons/user.png";
+import logo from "../../../Images/logo.png";
 
 const Navbar = () => {
   const { user, logOutUser, isAdmin } = useAuth();
@@ -29,9 +30,11 @@ const Navbar = () => {
         location.pathname === "/" ? "bg-transparent" : "bg-white"
       } ${showBgOnScroll && "bg-white transition-all shadow-md"}`}
     >
-      <div className="container relative mx-auto flex justify-between items-center py-4 ">
+      <div className="container relative mx-auto flex justify-between items-center ">
         <div>
-          <h1 className="text-3xl font-bold uppercase">Name here </h1>
+          <Link to="/">
+            <img width="250" src={logo} alt="logo" />
+          </Link>
         </div>
         <div className="flex justify-end items-center  md:w-2/3">
           <div className="mr-8 hidden md:block">
@@ -39,29 +42,29 @@ const Navbar = () => {
               exact
               activeClassName="font-bold text-gray-900"
               to="/"
-              className="px-4 font-medium  text-gray-600"
+              className={`px-4 font-medium  text-gray-800`}
             >
               Home
             </NavLink>
             <NavLink
-              activeClassName="font-bold text-gray-900"
+              activeClassName="font-bold  text-gray-900"
               to="/explore"
-              className="px-4 font-medium text-gray-600"
+              className="px-4 font-medium text-gray-800"
             >
               Explore
             </NavLink>
             <NavLink
               activeClassName="font-bold text-gray-900"
-              to="/contact-us"
-              className="px-4 font-medium text-gray-600"
+              to="/about-us"
+              className="px-4 font-medium text-gray-800"
             >
-              Contact us
+              About us
             </NavLink>
             {user.email && (
               <NavLink
                 activeClassName="font-bold text-gray-900"
                 to="/dashboard"
-                className="px-4 font-medium text-gray-600"
+                className="px-4 font-medium text-gray-800"
               >
                 Dashboard
               </NavLink>
@@ -70,7 +73,7 @@ const Navbar = () => {
               <NavLink
                 activeClassName="font-bold text-gray-900"
                 to="/admin-dashboard"
-                className="px-4 font-medium text-gray-600"
+                className="px-4 font-medium text-gray-800"
               >
                 Admin Dashboard
               </NavLink>
