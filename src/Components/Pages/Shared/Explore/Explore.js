@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import Footer from "../Footer/Footer";
 import Navbar from "../Navbar/Navbar";
 import SingleItemExplore from "../SingleItemExplore/SingleItemExplore";
 
@@ -30,6 +31,7 @@ const Explore = ({ showAll }) => {
           ))}
         </div>
       </div>
+      {showAll && <Footer />}
     </div>
   );
 };
