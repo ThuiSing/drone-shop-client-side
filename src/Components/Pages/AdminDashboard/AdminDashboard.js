@@ -160,7 +160,10 @@ const AdminDashboard = () => {
           </div>
         </div>
       </div>
-      <div onClick={() => setShowNav(false)} className=" flex-1 md:ml-60 p-5">
+      <div
+        onClick={() => setShowNav(false)}
+        className="overflow-hidden flex-1 md:ml-60 p-5"
+      >
         <Switch>
           <AdminRoute exact path={path}>
             <ManageAllOrders />
