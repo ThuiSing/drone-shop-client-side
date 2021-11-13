@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import useAuth from "../../../Hooks/useAuth";
+import useCart from "../../../Hooks/useCart";
 import userIcon from "../../../Images/icons/user.png";
 import logo from "../../../Images/logo.png";
 
@@ -10,6 +11,7 @@ const Navbar = () => {
   const location = useLocation();
   const [openUserNav, setOpenUserNav] = useState(false);
   const [showBgOnScroll, setShowBgOnScroll] = useState(false);
+  const [cart] = useCart();
   // console.log(location.pathname);
   // console.log(user);
 
@@ -79,7 +81,28 @@ const Navbar = () => {
               </NavLink>
             )}
           </div>
-          <div className="flex items-center">
+          <div className="flex items-center ">
+            <Link to="/cart">
+              <div className="relative p-3 cursor-pointer">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-6 w-6"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
+                  />
+                </svg>
+                <h5 className="absolute h-6 w-6 text-center rounded-full top-0 font-medium right-1 text-md text-white bg-red-600">
+                  {cart.length}
+                </h5>
+              </div>
+            </Link>
             {user.email && (
               <div className="mr-3">
                 <img
@@ -155,10 +178,10 @@ const Navbar = () => {
                 </NavLink>
                 <NavLink
                   activeClassName="font-bold text-gray-900"
-                  to="/contact-us"
+                  to="/about-us"
                   className="px-4 font-medium text-gray-600"
                 >
-                  Contact us
+                  About us
                 </NavLink>
                 {user.email && (
                   <NavLink
