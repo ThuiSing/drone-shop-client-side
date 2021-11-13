@@ -4,12 +4,10 @@ This project Created using by React , React-Router , mongo, node js, Tailwind Cs
 
 ## Overview of this website
 
-This Website Created for Niche Product Selling .\
-
-Where Customer buy their favourites drones from here .\
-
-This Website are user Friendly .\
-
-You have to logged in first to buy Drones from here .\
-
-You can get Drones in affordable price
+<ul>
+<li>This Website Created for Niche Product Selling </li>
+<li>Where Customer buy their favourites drones from here </li>
+<li>This Website are user Friendly </li>
+<li>You have to logged in first to buy Drones from here</li>
+<li>You can get Drones in affordable price in this website </li>
+ </ul>

@@ -44,7 +44,7 @@ const AdminDashboard = () => {
         </svg>
       </div>
       <div
-        className={`fixed top-0 w-1/2 h-screen bg-gray-800 text-white shadow-md md:hidden  p-2 ${
+        className={`fixed top-0 w-2/3 sm:w-1/2 h-screen bg-gray-800 text-white shadow-md md:hidden  p-2 ${
           showNav ? "block" : "hidden"
         }`}
       >

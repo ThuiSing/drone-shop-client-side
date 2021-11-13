@@ -37,16 +37,16 @@ const ManageProducts = () => {
       {loader ? (
         <Loader />
       ) : (
-        <div className="grid grid-cols-2 gap-3">
+        <div className="grid md:grid-cols-2 gap-3">
           {products.map((product) => (
             <div
               key={product._id}
-              className="flex items-center border bg-white rounded"
+              className="flex flex-col md:flex-row items-center border bg-white rounded"
             >
-              <div className="border-r w-1/3">
+              <div className="border-r md:w-1/3">
                 <img src={product.img} alt="" />
               </div>
-              <div className="w-2/3 space-y-2 p-2">
+              <div className="md:w-2/3 space-y-2 p-2">
                 <h2 className="text-xl font-medium">{product.name}</h2>
                 <h2 className="text-md text-gray-600">
                   {product.description.slice(0, 150)}...
