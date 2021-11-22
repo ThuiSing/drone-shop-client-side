@@ -49,23 +49,21 @@ const UserOrders = () => {
           {orders.map((order) => (
             <div key={order._id} className="flex items-center border">
               <div className="border-r w-1/3">
-                <img src={order?.orderItem?.img} alt="" />
+                <img src={order?.img} alt="" />
               </div>
               <div className="w-2/3 space-y-2 p-2">
                 <div className="flex justify-between items-center">
-                  <h2 className="text-xl font-medium">
-                    {order?.orderItem?.name}
-                  </h2>
+                  <h2 className="text-xl font-medium">{order?.name}</h2>
                   <span className={`${statusStyle(order.status)} px-2 py-1`}>
                     {order.status}
                   </span>
                 </div>
                 <h2 className="text-md text-gray-600">
-                  {order?.orderItem?.description}
+                  {order?.description.slice(0, 100)}..
                 </h2>
                 <div className="flex justify-between items-center font-medium">
                   <h2 className="text-md ">
-                    Total Price : ${order?.quantity * order?.orderItem?.price}
+                    Total Price : ${order?.quantity * order?.price}
                   </h2>
                   <h2 className="text-md ">Quantity : {order?.quantity}</h2>
                 </div>

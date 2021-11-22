@@ -28,14 +28,17 @@ const Purchase = () => {
   //purchase
   const onSubmit = (data) => {
     const confirmPurchase = window.confirm("Are you sure to purchase");
-    data.orderItem = drone;
-    data.status = "pending";
-    data.date = date.toLocaleDateString();
-
-    //post to database
+    drone.email = data.email;
+    drone.number = data.number;
+    drone.quantity = data.quantity;
+    drone.address = data.address;
+    drone.status = "pending";
+    drone.date = date.toLocaleDateString();
+    delete drone._id;
+    // post to database
     confirmPurchase &&
       axios
-        .post("https://desolate-brushlands-67419.herokuapp.com/orders", data)
+        .post("https://desolate-brushlands-67419.herokuapp.com/orders", drone)
         .then((res) => {
           if (res.data.insertedId) {
             alert("added successfully");

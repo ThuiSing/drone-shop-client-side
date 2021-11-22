@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import useAllCart from "../../../Hooks/useAllCart";
+import { useHistory } from "react-router-dom";
+import useAuth from "../../../Hooks/useAuth";
 import useCart from "../../../Hooks/useCart";
 import Footer from "../Footer/Footer";
 import Navbar from "../Navbar/Navbar";
@@ -9,26 +10,49 @@ import SingleItemExplore from "../SingleItemExplore/SingleItemExplore";
 const Explore = ({ showAll }) => {
   const [drones, setDrones] = useState([]);
   const [cart, setCart] = useCart();
-
+  const { user } = useAuth();
+  const history = useHistory();
+  const [loading, setLoading] = useState(true);
   // console.log(showAll);
 
   useEffect(() => {
+    setLoading(true);
     axios
       .get(`https://desolate-brushlands-67419.herokuapp.com/drones`)
       .then((res) => setDrones(res.data))
       .catch((err) => {
         console.log(err);
         setDrones([]);
-      });
+      })
+      .finally(() => setLoading(false));
   }, []);
 
-  //hanldecart
-
   const handleCart = (drone) => {
-    // console.log(drone);
-    setCart([...cart, drone]);
+    // console.log("hello", drone);
+    if (!user.email) {
+      alert("Log in first");
+      history.push("/login");
+    } else {
+      const matchedDrone = cart.find((droneID) => droneID._id === drone._id);
+      if (matchedDrone) {
+        matchedDrone.quantity += 1;
+        // console.log(matchedDrone);
+      } else {
+        drone.quantity = 1;
+        setCart([...cart, drone]);
+        const newCart = {
+          addedCart: [...cart, drone],
+          email: user.email,
+        };
+        axios
+          .put(`https://desolate-brushlands-67419.herokuapp.com/cart`, newCart)
+          .then((res) => {
+            alert("added to cart");
+          });
+      }
+    }
   };
-  console.log(cart);
+  // console.log(cart);
 
   return (
     <div className="mt-16">
@@ -41,15 +65,24 @@ const Explore = ({ showAll }) => {
         <div className="text-center my-6">
           <h1 className="text-4xl font-semibold">Our Drones</h1>
         </div>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5 lg:gap-8">
-          {(showAll ? drones : drones.slice(0, 6)).map((drone) => (
-            <SingleItemExplore
-              key={drone._id}
-              drone={drone}
-              handleCart={handleCart}
+        {loading ? (
+          <div className="flex items-center justify-center">
+            <img
+              src="https://i.pinimg.com/originals/d7/34/49/d73449313ecedb997822efecd1ee3eac.gif"
+              alt="loader"
             />
-          ))}
-        </div>
+          </div>
+        ) : (
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5 lg:gap-8">
+            {(showAll ? drones : drones.slice(0, 6)).map((drone) => (
+              <SingleItemExplore
+                key={drone._id}
+                drone={drone}
+                handleCart={handleCart}
+              />
+            ))}
+          </div>
+        )}
       </div>
       {showAll && <Footer />}
     </div>

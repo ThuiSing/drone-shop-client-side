@@ -37,7 +37,7 @@ const ManageSingleOrder = ({ order, handleDeleteOrder }) => {
     <>
       <tr className="h-12">
         <td>{email}</td>
-        <td>{order?.orderItem?.name}</td>
+        <td>{order?.name}</td>
         <td>{quantity}</td>
         <td>{date}</td>
         <td>{address}</td>
