@@ -48,7 +48,9 @@ const Cart = () => {
                 <div className="flex items-center">
                   <div>
                     <h3 className="font-medium text-2xl">Name : {item.name}</h3>
-                    <h3 className="font-medium"> Price : {item.price}</h3>
+                    <h3 className="font-medium">
+                      Price : {item.price * item.quantity}
+                    </h3>
                     <h3 className="font-medium"> Quantity : {item.quantity}</h3>
                   </div>
                   <div onClick={() => handleCross(item._id)}>
