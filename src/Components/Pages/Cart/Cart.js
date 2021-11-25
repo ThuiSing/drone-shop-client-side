@@ -44,7 +44,11 @@ const Cart = () => {
             cart.map((item, ind) => (
               <div key={ind} className="flex items-center">
                 {console.log(item)}
-                <img className="w-1/3" src={item.img} alt="" />
+                <img
+                  className="w-1/3"
+                  src={`data:image/jpeg;base64,${item.img}`}
+                  alt=""
+                />
                 <div className="flex items-center">
                   <div>
                     <h3 className="font-medium text-2xl">Name : {item.name}</h3>

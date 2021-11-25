@@ -2,6 +2,35 @@ import axios from "axios";
 import React from "react";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
+import Resizer from "react-image-file-resizer";
+
+const resizeFile = (file) =>
+  new Promise((resolve) => {
+    Resizer.imageFileResizer(
+      file,
+      500,
+      500,
+      "JPEG",
+      60,
+      0,
+      (uri) => {
+        resolve(uri);
+      },
+      "base64"
+    );
+  });
+
+const dataURIToBlob = (dataURI) => {
+  const splitDataURI = dataURI.split(",");
+  const byteString =
+    splitDataURI[0].indexOf("base64") >= 0
+      ? atob(splitDataURI[1])
+      : decodeURI(splitDataURI[1]);
+  const mimeString = splitDataURI[0].split(":")[1].split(";")[0];
+  const ia = new Uint8Array(byteString.length);
+  for (let i = 0; i < byteString.length; i++) ia[i] = byteString.charCodeAt(i);
+  return new Blob([ia], { type: mimeString });
+};
 
 const AddProduct = () => {
   const [message, setMessage] = useState("");
@@ -11,10 +40,24 @@ const AddProduct = () => {
     reset,
     formState: { errors },
   } = useForm();
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
+    const file = data.img[0];
+    const image = await resizeFile(file);
+    const newFile = dataURIToBlob(image); //optional for uploading
+
+    // console.log(data);
+
+    const formData = new FormData();
+    formData.append("name", data.name);
+    formData.append("description", data.description);
+    formData.append("price", data.price);
+    formData.append("img", newFile);
+
+    console.log(formData);
     axios
-      .post("https://desolate-brushlands-67419.herokuapp.com/drones", data)
+      .post("https://desolate-brushlands-67419.herokuapp.com/drones", formData)
       .then((res) => {
+        // console.log(res);
         if (res.data.insertedId) {
           alert("product added");
           setMessage("successfully added product");
@@ -47,7 +90,8 @@ const AddProduct = () => {
         <div>
           <label className="font-medium">Product Image</label>
           <input
-            className="w-full p-3 mt-1 outline-none"
+            type="file"
+            className="w-full bg-white p-3 mt-1 outline-none"
             {...register("img", { required: true })}
             placeholder="Enter Product Image Url"
           />

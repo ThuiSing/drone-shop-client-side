@@ -59,7 +59,7 @@ const Explore = ({ showAll }) => {
       {showAll && <Navbar />}
       <div
         className={`container mx-auto px-3 md:px-0 ${
-          showAll ? "py-4" : "py-12"
+          showAll ? " mb-16" : " mb-10"
         }`}
       >
         <div className="text-center my-6">

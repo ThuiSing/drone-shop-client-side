@@ -17,7 +17,6 @@ const PurchasePopUp = ({ setPopup }) => {
   const date = new Date();
 
   const onSubmit = (data) => {
-    // const newData =
     const newCart = cart.map((element) => {
       element.email = user.email;
       element.status = "pending";

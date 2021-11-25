@@ -14,6 +14,7 @@ import Register from "./Components/Pages/Login/Register/Register";
 import PrivateRoute from "./Components/Pages/PrivateRoute/PrivateRoute";
 import Purchase from "./Components/Pages/Purchase/Purchase";
 import Explore from "./Components/Pages/Shared/Explore/Explore";
+
 function App() {
   return (
     <div className="App">

@@ -17,17 +17,19 @@ const ManageProducts = () => {
       });
   }, []);
   const handleDelete = (id) => {
-    axios
-      .delete(`https://desolate-brushlands-67419.herokuapp.com/drones/${id}`)
-      .then((res) => {
-        if (res.data.deletedCount > 0) {
-          alert("deleted Successfully");
-          const existedProducts = products.filter(
-            (product) => product._id !== id
-          );
-          setProducts(existedProducts);
-        }
-      });
+    const confirm = window.confirm(`Sure to Delete`);
+    confirm &&
+      axios
+        .delete(`https://desolate-brushlands-67419.herokuapp.com/drones/${id}`)
+        .then((res) => {
+          if (res.data.deletedCount > 0) {
+            alert("deleted Successfully");
+            const existedProducts = products.filter(
+              (product) => product._id !== id
+            );
+            setProducts(existedProducts);
+          }
+        });
   };
   return (
     <div>
@@ -44,7 +46,7 @@ const ManageProducts = () => {
               className="flex flex-col md:flex-row items-center border bg-white rounded"
             >
               <div className="border-r md:w-1/3">
-                <img src={product.img} alt="" />
+                <img src={`data:image/jpeg;base64,${product.img}`} alt="" />
               </div>
               <div className="md:w-2/3 space-y-2 p-2">
                 <h2 className="text-xl font-medium">{product.name}</h2>

@@ -49,7 +49,7 @@ const UserOrders = () => {
           {orders.map((order) => (
             <div key={order._id} className="flex items-center border">
               <div className="border-r w-1/3">
-                <img src={order?.img} alt="" />
+                <img src={`data:image/jpeg;base64,${order?.img}`} alt="" />
               </div>
               <div className="w-2/3 space-y-2 p-2">
                 <div className="flex justify-between items-center">
