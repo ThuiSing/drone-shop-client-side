@@ -1,13 +1,13 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import { Link, useHistory, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
 import googleIcons from "../../Images/icons/google.png";
 import logo from "../../Images/logo.png";
 
 const Login = () => {
   const { LogInUsingGoogle, logInUsingEmail, error, isLoading } = useAuth();
-  const history = useHistory();
+  const navigate = useNavigate();
   const location = useLocation();
   const destination = location.state?.from || "/";
   const {
@@ -17,7 +17,7 @@ const Login = () => {
   } = useForm();
   const onSubmit = (data) => {
     // console.log(data);
-    logInUsingEmail(data.email, data.password, history, destination);
+    logInUsingEmail(data.email, data.password, navigate, destination);
   };
   return (
     <div className="min-h-screen flex justify-center items-center px-4 md:px-0 relative">
@@ -66,7 +66,7 @@ const Login = () => {
           </form>
           <h2 className="font-medium my-8">
             Don't Have Any Account ?
-            <Link to="register">
+            <Link to="/register">
               <span className="text-blue-800"> Register here</span>
             </Link>
           </h2>
@@ -77,7 +77,7 @@ const Login = () => {
             </span>
           </div>
           <div
-            onClick={() => LogInUsingGoogle(history, destination)}
+            onClick={() => LogInUsingGoogle(navigate, destination)}
             className="flex justify-center items-center relative bg-white rounded-full py-3 cursor-pointer"
           >
             <img className="w-10 absolute left-2" src={googleIcons} alt="" />

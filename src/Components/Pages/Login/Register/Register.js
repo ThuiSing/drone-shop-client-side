@@ -1,6 +1,6 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import { Link, useHistory } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../../../Hooks/useAuth";
 import googleIcons from "../../../Images/icons/google.png";
 import logo from "../../../Images/logo.png";
@@ -8,7 +8,7 @@ import logo from "../../../Images/logo.png";
 const Register = () => {
   const { RegisterUsingEmail, LogInUsingGoogle, error, setError, isLoading } =
     useAuth();
-  const history = useHistory();
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -19,7 +19,7 @@ const Register = () => {
       setError("Password Not matched");
     } else {
       setError("");
-      RegisterUsingEmail(data.email, data.password, data.name, history);
+      RegisterUsingEmail(data.email, data.password, data.name, navigate);
     }
   };
   return (
@@ -31,7 +31,7 @@ const Register = () => {
           </Link>
         </div>
         <div className="mt-6">
-          <h2 className="text-2xl font-medium">Log in Here</h2>
+          <h2 className="text-2xl font-medium">Register Here</h2>
 
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-5 my-4">
             <div>
@@ -95,7 +95,7 @@ const Register = () => {
           </form>
           <h2 className="font-medium my-8">
             Already Have an Account ?
-            <Link to="login">
+            <Link to="/login">
               <span className="text-blue-800"> Login here</span>
             </Link>
           </h2>
@@ -106,7 +106,7 @@ const Register = () => {
             </span>
           </div>
           <div
-            onClick={() => LogInUsingGoogle(history, "/")}
+            onClick={() => LogInUsingGoogle(navigate, "/")}
             className="flex justify-center items-center relative bg-white rounded-full py-3 cursor-pointer"
           >
             <img className="w-10 absolute left-2" src={googleIcons} alt="" />

@@ -1,14 +1,14 @@
 import axios from "axios";
 import React from "react";
 import { useForm } from "react-hook-form";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import useAuth from "../../../Hooks/useAuth";
 import useCart from "../../../Hooks/useCart";
 
 const PurchasePopUp = ({ setPopup }) => {
   const { user } = useAuth();
   const [cart, setCart] = useCart();
-  const history = useHistory();
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -30,7 +30,6 @@ const PurchasePopUp = ({ setPopup }) => {
     axios
       .post("https://desolate-brushlands-67419.herokuapp.com/orders", newCart)
       .then((res) => {
-        console.log(res);
         if (res.data.insertedCount > 0) {
           alert("ordered successfully.please pay now");
           axios
@@ -40,7 +39,7 @@ const PurchasePopUp = ({ setPopup }) => {
             .then((res) => {
               if (res.data.deletedCount > 0) {
                 setCart([]);
-                history.push("/dashboard/my-orders");
+                navigate("/dashboard/my-orders");
               }
             });
         }

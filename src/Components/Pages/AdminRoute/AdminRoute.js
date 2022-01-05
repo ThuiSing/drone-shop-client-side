@@ -1,10 +1,10 @@
 import React from "react";
-import { Redirect, Route } from "react-router-dom";
+import { Navigate, useLocation } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
 
 const AdminRoute = ({ children, ...rest }) => {
   const { user, isLoading, isAdmin } = useAuth();
-
+  const location = useLocation();
   if (isLoading) {
     return (
       <div className="flex justify-center items-center min-h-screen">
@@ -14,23 +14,12 @@ const AdminRoute = ({ children, ...rest }) => {
       </div>
     );
   }
-  return (
-    <Route
-      {...rest}
-      render={({ location }) =>
-        isAdmin && user.email ? (
-          children
-        ) : (
-          <Redirect
-            to={{
-              pathname: "/login",
-              state: { from: location },
-            }}
-          />
-        )
-      }
-    />
-  );
+
+  if (!user.email && !isAdmin) {
+    return <Navigate to="/login" state={{ from: location }} />;
+  }
+
+  return children;
 };
 
 export default AdminRoute;

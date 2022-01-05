@@ -53,7 +53,7 @@ const AddProduct = () => {
     formData.append("price", data.price);
     formData.append("img", newFile);
 
-    console.log(formData);
+    // console.log(formData);
     axios
       .post("https://desolate-brushlands-67419.herokuapp.com/drones", formData)
       .then((res) => {

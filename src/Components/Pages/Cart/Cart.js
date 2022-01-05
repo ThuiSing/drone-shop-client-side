@@ -34,7 +34,7 @@ const Cart = () => {
           {cart.length <= 0 ? (
             <h2 className="text-xl font-medium text-red-500">
               No item Added on cart .
-              <Link to="explore">
+              <Link to="/explore">
                 <span className="text-blue-800 hover:underline p-2 transition-all">
                   Add cart Now
                 </span>
@@ -43,7 +43,6 @@ const Cart = () => {
           ) : (
             cart.map((item, ind) => (
               <div key={ind} className="flex items-center">
-                {console.log(item)}
                 <img
                   className="w-1/3"
                   src={`data:image/jpeg;base64,${item.img}`}

@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useEffect } from "react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { useHistory, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Resizer from "react-image-file-resizer";
 
 const resizeFile = (file) =>
@@ -37,7 +37,7 @@ const UpdateProduct = () => {
   const { id } = useParams();
   const [product, setProduct] = useState({});
   const { register, handleSubmit } = useForm();
-  const history = useHistory();
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios
@@ -69,7 +69,7 @@ const UpdateProduct = () => {
     <div>
       <div className="flex  items-center mb-6">
         <svg
-          onClick={() => history.goBack()}
+          onClick={() => navigate(-1)}
           xmlns="http://www.w3.org/2000/svg"
           className="h-6 w-6 mr-5 cursor-pointer hover:text-green-700"
           fill="none"

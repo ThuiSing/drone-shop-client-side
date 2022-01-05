@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useParams, useHistory } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import useAuth from "../../Hooks/useAuth";
 import Navbar from "../Shared/Navbar/Navbar";
@@ -16,7 +16,7 @@ const Purchase = () => {
 
   const [drone, setDrone] = useState({});
   const { id } = useParams();
-  const history = useHistory();
+  const navigate = useNavigate();
   //   console.log(id);
   useEffect(() => {
     axios
@@ -42,7 +42,7 @@ const Purchase = () => {
         .then((res) => {
           if (res.data.insertedId) {
             alert("added successfully");
-            history.push("/dashboard/my-orders");
+            navigate("/dashboard/my-orders");
           }
         });
   };
@@ -54,7 +54,10 @@ const Purchase = () => {
         <div className="grid md:grid-cols-2 gap-x-10">
           <div>
             <div>
-              <img src={drone.img} alt={drone.name} />
+              <img
+                src={`data:image/jpeg;base64,${drone?.img}`}
+                alt={drone.name}
+              />
             </div>
             <div className="space-y-4">
               <h2 className="text-4xl font-medium text-gray-800">

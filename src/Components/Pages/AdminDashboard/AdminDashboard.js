@@ -1,29 +1,17 @@
 import React, { useState } from "react";
-import {
-  Switch,
-  Link,
-  useRouteMatch,
-  NavLink,
-  useHistory,
-} from "react-router-dom";
+import { Link, NavLink, Outlet, useNavigate } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
-import AdminRoute from "../AdminRoute/AdminRoute";
-import AddProduct from "./AddProduct/AddProduct";
-import MakeAdmin from "./MakeAdmin/MakeAdmin";
-import ManageAllOrders from "./ManageAllOrders/ManageAllOrders";
-import ManageProducts from "./ManageProducts/ManageProducts";
-import UpdateProduct from "./ManageProducts/UpdateProduct/UpdateProduct";
 import logo from "../../Images/logo.png";
 
 const AdminDashboard = () => {
   const { logOutUser } = useAuth();
-  const history = useHistory();
-  let { path, url } = useRouteMatch();
   const [showNav, setShowNav] = useState(false);
+
+  const navigation = useNavigate();
 
   const handleLogOut = () => {
     logOutUser();
-    history.replace("/");
+    navigation("/");
   };
   return (
     <div className="flex min-h-screen relative bg-gray-100 py-12">
@@ -73,31 +61,42 @@ const AdminDashboard = () => {
         <div className="flex flex-col justify-between h-5/6 ">
           <div className="flex flex-col mt-8">
             <NavLink
-              exact
-              activeClassName="text-gray-800 bg-white"
-              to={`${url}`}
-              className="text-md px-5 py-3"
+              to="/admin-dashboard"
+              className={(status) =>
+                `text-md px-5 py-3 ${
+                  status.isActive ? "bg-white text-black" : "bg-transparent"
+                } `
+              }
             >
               Manage All Orders
             </NavLink>
             <NavLink
-              activeClassName="text-gray-800 bg-white"
-              to={`${url}/add-product`}
-              className="text-md px-5 py-3"
+              to={`/admin-dashboard/add-product`}
+              className={(status) =>
+                `text-md px-5 py-3 ${
+                  status.isActive ? "bg-white text-black" : "bg-transparent"
+                } `
+              }
             >
               Add A Product
             </NavLink>
             <NavLink
-              activeClassName="text-gray-800 bg-white"
-              to={`${url}/make-admin`}
-              className="text-md px-5 py-3"
+              to={`/admin-dashboard/make-admin`}
+              className={(status) =>
+                `text-md px-5 py-3 ${
+                  status.isActive ? "bg-white text-black" : "bg-transparent"
+                } `
+              }
             >
               Make Admin
             </NavLink>
             <NavLink
-              activeClassName="text-gray-800 bg-white"
-              to={`${url}/manage-products`}
-              className="text-md px-5 py-3"
+              to={`/admin-dashboard/manage-products`}
+              className={(status) =>
+                `text-md px-5 py-3 ${
+                  status.isActive ? "bg-white text-black" : "bg-transparent"
+                } `
+              }
             >
               Manage Products
             </NavLink>
@@ -121,31 +120,42 @@ const AdminDashboard = () => {
         <div className="flex flex-col space-y-16">
           <div className="flex flex-col mt-8">
             <NavLink
-              exact
-              activeClassName="text-gray-800 bg-white"
-              to={`${url}`}
-              className="text-xl px-5 py-3"
+              to="/admin-dashboard"
+              className={(status) =>
+                `text-md px-5 py-3 ${
+                  status.isActive ? "bg-white text-black" : "bg-transparent"
+                } `
+              }
             >
               Manage All Orders
             </NavLink>
             <NavLink
-              activeClassName="text-gray-800 bg-white"
-              to={`${url}/add-product`}
-              className="text-xl px-5 py-3"
+              to={`/admin-dashboard/add-product`}
+              className={(status) =>
+                `text-md px-5 py-3 ${
+                  status.isActive ? "bg-white text-black" : "bg-transparent"
+                } `
+              }
             >
               Add A Product
             </NavLink>
             <NavLink
-              activeClassName="text-gray-800 bg-white"
-              to={`${url}/make-admin`}
-              className="text-xl px-5 py-3"
+              to={`/admin-dashboard/make-admin`}
+              className={(status) =>
+                `text-md px-5 py-3 ${
+                  status.isActive ? "bg-white text-black" : "bg-transparent"
+                } `
+              }
             >
               Make Admin
             </NavLink>
             <NavLink
-              activeClassName="text-gray-800 bg-white"
-              to={`${url}/manage-products`}
-              className="text-xl px-5 py-3"
+              to={`/admin-dashboard/manage-products`}
+              className={(status) =>
+                `text-md px-5 py-3 ${
+                  status.isActive ? "bg-white text-black" : "bg-transparent"
+                } `
+              }
             >
               Manage Products
             </NavLink>
@@ -164,23 +174,7 @@ const AdminDashboard = () => {
         onClick={() => setShowNav(false)}
         className="overflow-hidden flex-1 md:ml-60 p-5"
       >
-        <Switch>
-          <AdminRoute exact path={path}>
-            <ManageAllOrders />
-          </AdminRoute>
-          <AdminRoute path={`${path}/add-product`}>
-            <AddProduct />
-          </AdminRoute>
-          <AdminRoute path={`${path}/make-admin`}>
-            <MakeAdmin />
-          </AdminRoute>
-          <AdminRoute exact path={`${path}/manage-products`}>
-            <ManageProducts />
-          </AdminRoute>
-          <AdminRoute path={`${path}/manage-products/:id`}>
-            <UpdateProduct />
-          </AdminRoute>
-        </Switch>
+        <Outlet />
       </div>
     </div>
   );

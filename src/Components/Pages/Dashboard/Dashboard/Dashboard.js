@@ -1,26 +1,16 @@
 import React from "react";
-import {
-  Switch,
-  Link,
-  useRouteMatch,
-  NavLink,
-  useHistory,
-} from "react-router-dom";
 import { useState } from "react";
 import useAuth from "../../../Hooks/useAuth";
-import PrivateRoute from "../../PrivateRoute/PrivateRoute";
-import UserOrders from "../UserOrders/UserOrders";
-import UserReview from "../UserReview/UserReview";
 import logo from "../../../Images/logo.png";
+import { Link, NavLink, Outlet, useNavigate } from "react-router-dom";
 
 const Dashboard = () => {
   const { logOutUser } = useAuth();
-  let { path, url } = useRouteMatch();
   const [showNav, setShowNav] = useState(false);
-  const history = useHistory();
+  const navigate = useNavigate();
   const handleLogOut = () => {
     logOutUser();
-    history.replace("/");
+    navigate("/");
   };
 
   return (
@@ -72,24 +62,38 @@ const Dashboard = () => {
           <div className="flex flex-col justify-between ">
             <div className="flex flex-col mt-8">
               <NavLink
-                exact
-                activeClassName="text-white bg-gray-800  "
-                to={`${url}`}
-                className="text-md px-4 py-3"
+                to={`/dashboard`}
+                className={(status) =>
+                  `text-md px-5 py-3 ${
+                    status.isActive
+                      ? "bg-gray-800 text-white"
+                      : "bg-transparent"
+                  } `
+                }
               >
                 Pay
               </NavLink>
               <NavLink
-                activeClassName="text-white bg-gray-800 "
-                to={`${url}/my-orders`}
-                className="text-md px-4 py-3"
+                to={`/dashboard/my-orders`}
+                className={(status) =>
+                  `text-md px-5 py-3 ${
+                    status.isActive
+                      ? "bg-gray-800 text-white"
+                      : "bg-transparent"
+                  } `
+                }
               >
                 My Orders
               </NavLink>
               <NavLink
-                activeClassName="text-white bg-gray-800 "
-                to={`${url}/review`}
-                className="text-md px-4 py-3"
+                to={`/dashboard/review`}
+                className={(status) =>
+                  `text-md px-5 py-3 ${
+                    status.isActive
+                      ? "bg-gray-800 text-white"
+                      : "bg-transparent"
+                  } `
+                }
               >
                 Review
               </NavLink>
@@ -114,24 +118,32 @@ const Dashboard = () => {
         <div className="flex flex-col justify-between h-5/6 ">
           <div className="flex flex-col mt-8">
             <NavLink
-              exact
-              activeClassName="text-white bg-gray-800  "
-              to={`${url}`}
-              className="text-xl px-4 py-3"
+              to={`/dashboard`}
+              className={(status) =>
+                `text-md px-5 py-3 ${
+                  status.isActive ? "bg-gray-800 text-white" : "bg-transparent"
+                } `
+              }
             >
               Pay
             </NavLink>
             <NavLink
-              activeClassName="text-white bg-gray-800 "
-              to={`${url}/my-orders`}
-              className="text-xl px-4 py-3"
+              to={`/dashboard/my-orders`}
+              className={(status) =>
+                `text-md px-5 py-3 ${
+                  status.isActive ? "bg-gray-800 text-white" : "bg-transparent"
+                } `
+              }
             >
               My Orders
             </NavLink>
             <NavLink
-              activeClassName="text-white bg-gray-800 "
-              to={`${url}/review`}
-              className="text-xl px-4 py-3"
+              to={`/dashboard/review`}
+              className={(status) =>
+                `text-md px-5 py-3 ${
+                  status.isActive ? "bg-gray-800 text-white" : "bg-transparent"
+                } `
+              }
             >
               Review
             </NavLink>
@@ -150,17 +162,7 @@ const Dashboard = () => {
         className="col-span-5 md:ml-64 px-3 p-6"
         onClick={() => setShowNav(false)}
       >
-        <Switch>
-          <PrivateRoute exact path={path}>
-            <h3 className="text-2xl">Payment System is Coming soon ....</h3>
-          </PrivateRoute>
-          <PrivateRoute path={`${path}/my-orders`}>
-            <UserOrders />
-          </PrivateRoute>
-          <PrivateRoute path={`${path}/review`}>
-            <UserReview />
-          </PrivateRoute>
-        </Switch>
+        <Outlet />
       </div>
     </div>
   );

@@ -26,7 +26,6 @@ const UserReview = () => {
       setErr("Rating value must be less than 5 or greater than 1");
     } else {
       setErr("");
-      console.log(data);
       axios
         .post("https://desolate-brushlands-67419.herokuapp.com/reviews", data)
         .then((res) => {

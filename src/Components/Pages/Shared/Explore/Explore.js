@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import useAuth from "../../../Hooks/useAuth";
 import useCart from "../../../Hooks/useCart";
 import Footer from "../Footer/Footer";
@@ -11,7 +11,7 @@ const Explore = ({ showAll }) => {
   const [drones, setDrones] = useState([]);
   const [cart, setCart] = useCart();
   const { user } = useAuth();
-  const history = useHistory();
+  const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
   // console.log(showAll);
 
@@ -21,7 +21,6 @@ const Explore = ({ showAll }) => {
       .get(`https://desolate-brushlands-67419.herokuapp.com/drones`)
       .then((res) => setDrones(res.data))
       .catch((err) => {
-        console.log(err);
         setDrones([]);
       })
       .finally(() => setLoading(false));
@@ -31,7 +30,7 @@ const Explore = ({ showAll }) => {
     // console.log("hello", drone);
     if (!user.email) {
       alert("Log in first");
-      history.push("/login");
+      navigate("/login");
     } else {
       const matchedDrone = cart.find((droneID) => droneID._id === drone._id);
       if (matchedDrone) {
