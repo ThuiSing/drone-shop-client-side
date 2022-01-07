@@ -90,10 +90,6 @@ const useFirebase = () => {
         getIdToken(user).then((token) =>
           localStorage.setItem("idToken", token)
         );
-
-        getIdToken(user).then((token) =>
-          localStorage.setItem("idToken", token)
-        );
       } else {
         // User is signed out
       }
