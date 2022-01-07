@@ -19,25 +19,25 @@ const MakeAdmin = () => {
   };
   const handleMakeAdmin = () => {
     setShowErr("");
-    //   const filter =
-    //     /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-    //   if (filter.test(email)) {
-    //     axios({
-    //       method: "put", //you can set what request you want to be
-    //       url: `https://desolate-brushlands-67419.herokuapp.com/users/${email}`,
-    //       data: "",
-    //       headers: {
-    //         Authorization: `Bearer ${localStorage.getItem("idToken")}`,
-    //       },
-    //     }).then((res) => {
-    //       if (res.data.modifiedCount > 0) {
-    //         alert("Making Admin Successfully ");
-    //         setShowErr("");
-    //       }
-    //     });
-    //   } else {
-    //     setShowErr("Please Enter validate Email !");
-    //   }
+    const filter =
+      /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+    if (filter.test(email)) {
+      axios({
+        method: "put", //you can set what request you want to be
+        url: `https://desolate-brushlands-67419.herokuapp.com/users/${email}`,
+        data: "",
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("idToken")}`,
+        },
+      }).then((res) => {
+        if (res.data.modifiedCount > 0) {
+          alert("Making Admin Successfully ");
+          setShowErr("");
+        }
+      });
+    } else {
+      setShowErr("Please Enter validate Email !");
+    }
   };
   return (
     <div>
